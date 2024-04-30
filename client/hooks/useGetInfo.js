@@ -9,6 +9,8 @@ export const useGetInfo = () =>{
     const [isLoading, setIsLoading] = useState('');
     const [error, setError] = useState('');
 
+    const URL = process.env.EXPO_PUBLIC_API_URL
+
 
     const {user} = useAuthContext()
 
@@ -17,7 +19,7 @@ export const useGetInfo = () =>{
         setIsLoading(true);
         setError(null);
 
-        const response = await fetch('http://192.168.1.136:4567/auth/dashboard',{
+        const response = await fetch(`${URL}auth/dashboard`,{
             headers:{
                 'authorization': `Bearer ${user.token}`
             }

@@ -2,10 +2,11 @@
 export const useVerifyToken = () =>{
  
     const verifyToken = async (token)=> {
+        const URL = process.env.EXPO_PUBLIC_API_URL
 
         console.log(token)
         //making the http request that return a response from server
-        const response = await fetch('http://192.168.1.136:4567/auth/verifyToken',{
+        const response = await fetch(`${URL}auth/verifyToken`,{
         headers:{
             'authorization': `Bearer ${token}`
         }

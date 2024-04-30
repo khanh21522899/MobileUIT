@@ -2,9 +2,12 @@ import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+import { useLogout } from '../../../hooks/useLogout';
 
 const Account = () => {
   const navigation = useNavigation();
+
+  const logout = useLogout()
 
   const renderSeparator = () => {
     return <View style={styles.separator} />;
@@ -19,7 +22,7 @@ const Account = () => {
           } else if (item.title === 'Reservation History') {
             navigation.navigate('ReservationHistory');
           } else {
-            // handleLogout()
+            logout({navigation})
           }
         }}>
         <View style={styles.itemContainer}>

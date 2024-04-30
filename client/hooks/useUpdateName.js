@@ -11,7 +11,7 @@ export const useUpdateName= () =>{
 
         const {user} = useAuthContext()
     
-     
+        const URL = process.env.EXPO_PUBLIC_API_URL
 
 
         const updateName = async (name) =>{
@@ -21,7 +21,7 @@ export const useUpdateName= () =>{
             setNameError('')
             setNamePending(true)
             
-            const response = await fetch('http://192.168.1.136:4567/auth/dashboard/updateuser/changename', {
+            const response = await fetch(`${URL}auth/dashboard/updateuser/changename`, {
                 method:'PUT',
                 headers:{
                     'Content-type': 'application/json',

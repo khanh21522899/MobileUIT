@@ -8,6 +8,8 @@ export const useSignup = () => {
     const [isLoading, setIsLoading] = useState(null)
     const [error, setError] = useState(null)
 
+    const URL = process.env.EXPO_PUBLIC_API_URL
+
     //destructure dispatch from authcontext
     const {setUser} = useAuthContext()
 
@@ -17,7 +19,7 @@ export const useSignup = () => {
         setError(null)
         
         //making the http request that return a response from server
-        const response = await fetch('http://192.168.1.136:4567/auth/signup', {
+        const response = await fetch(`${URL}auth/signup`, {
             method:'POST',
             headers:{'Content-type': 'application/json'},
             body: JSON.stringify({name, email, password})

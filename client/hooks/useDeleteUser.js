@@ -3,6 +3,7 @@ import { useAuthContext } from '../context/AuthContext'
 import{clearUser} from './useUser'
 
 
+
 export const useDeleteUser = ({navigation}) => {
 
   const [deletePending, setDeletePending] = useState(false)
@@ -11,6 +12,7 @@ export const useDeleteUser = ({navigation}) => {
 
   const { user, setUser } = useAuthContext()
 
+  const URL = process.env.EXPO_PUBLIC_API_URL
 
 
   const deleteUser = async (password) => {
@@ -20,7 +22,8 @@ export const useDeleteUser = ({navigation}) => {
     setDeleteError('')
     setDeletePending(true)
 
-    const response = await fetch('http://192.168.1.136:4567/auth/dashboard/updateuser/deleteUser', {
+
+    const response = await fetch(`${URL}auth/dashboard/updateuser/deleteUser`, {
       method: 'DELETE',
       headers: {
         'Content-type': 'application/json',

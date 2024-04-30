@@ -5,9 +5,10 @@ const morgan = require('morgan')
 const cors = require('cors')
 const env = require('dotenv')
 const router = require('./router')
-const connectDatabase = require('./connDatabase')
+const mongoose = require("mongoose")
 
 env.config()
+const url = process.env.MONGO_URI
 
 app.use(express.json())
 app.use(cors({
@@ -16,12 +17,21 @@ app.use(cors({
 }))
 
 app.use(morgan('combined'));
-connectDatabase()
+
 app.use(express.static(path.join(__dirname))) // xu ly file static lay path den cho hien tai
 
 app.use(router)
 
-app.listen(process.env.PORT || 3001, () => {
-    console.log("Example app listening at http://localhost:" + process.env.PORT)
-})
+
+mongoose
+  .connect(url)
+  .then(() => {
+    //make the server listening on port 4567
+    app.listen(process.env.PORT, () => {
+      console.log("connect & listen on " +  process.env.PORT);
+    });
+  })
+  .catch((e) => {
+    console.log(e);
+  })
 

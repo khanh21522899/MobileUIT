@@ -11,6 +11,8 @@ export const useUpdateEmail= ({navigation}) =>{
 
         const {user, setUser} = useAuthContext()
         const logout = useLogout()
+
+        const URL = process.env.EXPO_PUBLIC_API_URL
     
         const updateEmail = async (email) =>{
             if(!user){
@@ -20,7 +22,7 @@ export const useUpdateEmail= ({navigation}) =>{
             setEmailPending(true)
 
             
-            const response = await fetch('http://192.168.1.136:4567/auth/dashboard/updateuser/changeemail', {
+            const response = await fetch(`${URL}auth/dashboard/updateuser/changeemail`, {
                 method:'PUT',
                 headers:{
                     'Content-type': 'application/json',
