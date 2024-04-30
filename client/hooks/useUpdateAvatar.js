@@ -9,6 +9,8 @@ export const useUpdateAvatar= () =>{
         const [avatarError, setAvatarError] = useState('')
     
         const {user} = useAuthContext()
+
+        const URL = process.env.EXPO_PUBLIC_API_URL
     
 
         const updateAvatar = async (data) =>{
@@ -29,7 +31,7 @@ export const useUpdateAvatar= () =>{
 
             })
             
-            const response = await fetch('http://192.168.1.136:4567/auth/dashboard/updateuser/changeavatar', {
+            const response = await fetch(`${URL}auth/dashboard/updateuser/changeavatar`, {
                 method:'PUT',
                 headers:{
                     Accept: 'application/json',

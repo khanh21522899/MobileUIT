@@ -7,7 +7,7 @@ const Title = () => {
             <View style={styles.header}>
                 <Text style={styles.headerTitle}>Heading Title</Text>
                 <TouchableOpacity>
-                    <Ionicons name="grid" size={24} color= 'primary'/>
+                    <Ionicons name="grid" size={24} color='red'/>
                 </TouchableOpacity>
             </View>
         </View>

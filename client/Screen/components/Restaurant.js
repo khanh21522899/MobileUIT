@@ -24,7 +24,7 @@ const Restaurant = () => {
 
     return (
         <View style={{ marginTop: 10 }}>
-            <FlatList
+            <FlatList scrollEnabled={false}
                 data={restaurants}
                 renderItem={({ item }) => (
                     <View style={styles.restaurantContainer}>

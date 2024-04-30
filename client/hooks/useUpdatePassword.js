@@ -11,7 +11,7 @@ export const useUpdatePassword= ({navigation}) =>{
 
         const {user} = useAuthContext()
     
-     
+        const URL = process.env.EXPO_PUBLIC_API_URL
 
 
         const updatePassword = async (oldPassword, newPassword) =>{
@@ -21,7 +21,7 @@ export const useUpdatePassword= ({navigation}) =>{
             setPasswordError('')
             setPasswordPending(true)
             
-            const response = await fetch('http://192.168.1.136:4567/auth/dashboard/updateuser/changepassword', {
+            const response = await fetch(`${URL}auth/dashboard/updateuser/changepassword`, {
                 method:'PUT',
                 headers:{
                     'Content-type': 'application/json',

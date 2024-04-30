@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Home from '../auth/Home'
 import Search from '../auth/Search'
 import Account from '../auth/profile/Account'
-import UserInfo from '../auth/profile/UserInfo'
+import AccountManage from '../AccountManage'
 import ReservationHistory from '../auth/profile/ReservHistoryUser'
 import Reservation from '../auth/Reservation'
 import Detail from '../auth/Detail'
@@ -29,7 +29,7 @@ const AccountStack = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen options={{ headerShown: false }} name="Account" component={Account} />
-            <Stack.Screen name="UserInfo" component={UserInfo} />
+            <Stack.Screen name="UserInfo" component={AccountManage} />
             <Stack.Screen name="ReservationHistory" component={ReservationHistory} />
         </Stack.Navigator>
     )

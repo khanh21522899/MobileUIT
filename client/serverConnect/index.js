@@ -3,8 +3,10 @@ import axios from "axios"
 // 172.20.10.2   phone
 // 192.168.1.2   home
 // 172.16.4.81
+const URL = process.env.EXPO_PUBLIC_API_URL
+
 const instance = axios.create({
-    baseURL: "http://192.168.1.136:4567"
+    baseURL: URL
 })
 
 export const getRestaurants = () => {
