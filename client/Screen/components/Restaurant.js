@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 
 import { getRestaurants } from '../../serverConnect/index'
+import { Ionicons } from '@expo/vector-icons';
 
 const Restaurant = () => {
     const [restaurants, setRestaurants] = useState([])
@@ -29,23 +30,41 @@ const Restaurant = () => {
                 renderItem={({ item }) => (
                     <View style={styles.restaurantContainer}>
                         {item.images.length > 0 && (
-                            <TouchableOpacity onPress={() => navigation.navigate('Detail', {id: item?._id})}>
+                            <TouchableOpacity onPress={() => navigation.navigate('Detail', { id: item?._id })}>
                                 <Image
                                     source={{ uri: item.images[0] }} // Use the first image URL
                                     style={styles.imageStyle}
                                 />
                             </TouchableOpacity>
                         )}
-                        <Text style={styles.textStyle}>{item.name}</Text>
-                        <TouchableOpacity style={styles.reservationButton} onPress={() => navigation.navigate('Detail', {id: item?._id})}>
-                            <Text style={styles.buttonText}>Reservation</Text>
-                        </TouchableOpacity>
+                        <Text style={styles.nameStyle}>{item.name}</Text>
+                        <Text style={styles.addressStyle}>{item.address}</Text>
+
+                        {/* Row for star, reservation button, and location */}
+                        <View style={styles.rowContainer}>
+                            <View style={styles.iconLocation}>
+                                <Ionicons name="location" size={24} color="#28bab6" />
+                                <Text style={styles.iconText}>8.8 km</Text>
+                            </View>
+
+                            <TouchableOpacity style={styles.reservationButton} onPress={() => navigation.navigate('Detail', { id: item?._id })}>
+                                <Text style={styles.buttonText}>Reservation</Text>
+                            </TouchableOpacity>
+
+                            <View style={styles.iconStar}>
+                                <Ionicons name="star" size={24} color="#fbd808" />
+                                <Text style={styles.iconText}>4.5 | $$</Text>
+                            </View>
+
+
+                        </View>
                     </View>
                 )}
                 vertical
                 contentContainerStyle={{ paddingHorizontal: 10 }}
                 keyExtractor={(item, index) => item._id.toString() || index.toString()}
             />
+
 
         </View>
     )
@@ -62,8 +81,18 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginBottom: 10
     },
-    textStyle: {
+    nameStyle: {
+        alignSelf: 'flex-start',
         fontSize: 16,
+        fontWeight: 'bold',
+        marginBottom: 1
+    },
+    addressStyle: {
+        alignSelf: 'flex-start',
+
+        fontSize: 14,
+        color: 'gray',
+        marginBottom: 10
     },
     reservationButton: {
         backgroundColor: 'red',
@@ -77,7 +106,31 @@ const styles = StyleSheet.create({
     buttonText: {
         color: 'white',
         fontSize: 18,
-    }
+    },
+    // New styles for the row container and icons
+    rowContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginTop: 10,
+    },
+    iconStar: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    reservationButton: {
+        backgroundColor: 'red',
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        borderRadius: 5,
+        alignSelf: 'center',
+        marginRight: 50,
+    },
+    iconLocation: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginRight: 50
+    },
 })
 
 export default Restaurant

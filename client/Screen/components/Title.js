@@ -5,7 +5,7 @@ const Title = () => {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <Text style={styles.headerTitle}>Heading Title</Text>
+                <Text style={styles.headerTitle}>Top favorite restaurants</Text>
                 <TouchableOpacity>
                     <Ionicons name="grid" size={24} color='red'/>
                 </TouchableOpacity>
