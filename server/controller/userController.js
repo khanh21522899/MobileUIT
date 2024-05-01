@@ -74,7 +74,7 @@ const updateAvatar = async (req, res) => {
     
     const {width, height} = await sharp(profileImgBuffer).metadata();
     
-    const profileImg = Readable.from(await sharp(profileImgBuffer).resize( width*100/width, height*100/height ).toBuffer());
+    const profileImg = Readable.from(await sharp(profileImgBuffer).resize( width*150/width, height*150/height ).toBuffer());
     
     const storeId = await upload(name, profileImg, mimeType);
     

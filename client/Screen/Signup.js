@@ -41,6 +41,13 @@ export default function SignupForm({navigation}) {
               autoCapitalize='none'/>
               <Text>{error}</Text>
             </View>
+              
+    
+            <View style={styles.buttonView}>
+              <Pressable style={styles.button} onPress={() => {handleSignup()}}>
+                <Text style={styles.buttonText}>Sign up</Text>
+              </Pressable>
+            </View>
 
             <View>
               <Text style={styles.optionsText}>OR SIGNUP WITH</Text>
@@ -49,13 +56,6 @@ export default function SignupForm({navigation}) {
                 <Image source={tiktok} style={styles.icons}  />
                 <Image source={linkedin} style={styles.icons}  />
               </View>
-            </View>
-              
-    
-            <View style={styles.buttonView}>
-              <Pressable style={styles.button} onPress={() => {handleSignup()}}>
-                <Text style={styles.buttonText}>Sign up</Text>
-              </Pressable>
             </View>
               
             <Text style={styles.footerText}>You 've already have an account?</Text>
@@ -71,8 +71,10 @@ export default function SignupForm({navigation}) {
       )
     }
     else{
-      return(
-        <ActivityIndicator/>
+      return (
+        <View style={{justifyContent:'center', alignItems: 'center'}}>
+          <ActivityIndicator/>
+        </View>
       )
     }
   
@@ -125,10 +127,10 @@ const styles = StyleSheet.create({
     
   },
   rememberText : {
-    fontSize: 13
+    fontSize: 15
   },
   forgetText : {
-    fontSize : 11,
+    fontSize : 15,
     color : "red"
   },
   button : {
@@ -154,7 +156,7 @@ const styles = StyleSheet.create({
     textAlign : "center",
     paddingVertical : 0,
     color : "gray",
-    fontSize : 13,
+    fontSize : 15,
     marginBottom : 6
   },
   mediaIcons : {
@@ -171,9 +173,10 @@ const styles = StyleSheet.create({
   footerText : {
     textAlign: "center",
     color : "gray",
+    fontSize:15
   },
   signup : {
     color : "red",
-    fontSize : 13
+    fontSize : 15
   }
 })

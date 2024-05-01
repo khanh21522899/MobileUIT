@@ -112,109 +112,111 @@ const AccountManage = ({navigation}) =>{
     },[])
 
     return (
-        <TouchableWithoutFeedback onPress={()=>{Keyboard.dismiss()}}>
-            <ScrollView>
-                <Modal
-                    animationType="slide"
-                    transparent={true}
-                    visible={modalVisible}
-                    onRequestClose={() => {
-                    setModalVisible(!modalVisible);
-                    }}>
-                    <View style={stylesModal.centeredView}>
-                    <View style={stylesModal.modalView}>
-                        <Pressable
-                        style={[stylesModal.button, stylesModal.buttonSelect]}
-                        onPress={() => {pickImageFromLibary()}}>
-                        <Text style={stylesModal.textStyle}>Select Image from Libary</Text>
-                        </Pressable>
-                        <Pressable
-                        style={[stylesModal.button, stylesModal.buttonSelect]}
-                        onPress={() => openCamera()}>
-                        <Text style={stylesModal.textStyle}>Take a picture using camera</Text>
-                        </Pressable>
-                        <Pressable
-                        style={[stylesModal.button, stylesModal.buttonClose]}
-                        onPress={() => setModalVisible(!modalVisible)}>
-                        <Text style={stylesModal.textStyle }>Close Select Options</Text>
-                        </Pressable>
-                    </View>
-                    </View>
-                </Modal>
-                <SafeAreaView>
-                    <View>
-                        <View style={styles.avatar}>
-                            <Pressable onPress={ ()=>{setModalVisible(true)}}>
-                                {isLoading||avatarPending?<ActivityIndicator/>:<Image style={{width:100, height:100}} source={{uri:srcAvatar}} />}
+        <TouchableWithoutFeedback  onPress={()=>{Keyboard.dismiss()}}>
+            <View style={{marginBottom:80}}>
+                <ScrollView>
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={modalVisible}
+                        onRequestClose={() => {
+                        setModalVisible(!modalVisible);
+                        }}>
+                        <View style={stylesModal.centeredView}>
+                        <View style={stylesModal.modalView}>
+                            <Pressable
+                            style={[stylesModal.button, stylesModal.buttonSelect]}
+                            onPress={() => {pickImageFromLibary()}}>
+                            <Text style={stylesModal.textStyle}>Select Image from Libary</Text>
                             </Pressable>
-                            {avatarError&&<Text style={styles.error}>{avatarError}</Text>}
+                            <Pressable
+                            style={[stylesModal.button, stylesModal.buttonSelect]}
+                            onPress={() => openCamera()}>
+                            <Text style={stylesModal.textStyle}>Take a picture using camera</Text>
+                            </Pressable>
+                            <Pressable
+                            style={[stylesModal.button, stylesModal.buttonClose]}
+                            onPress={() => setModalVisible(!modalVisible)}>
+                            <Text style={stylesModal.textStyle }>Close Select Options</Text>
+                            </Pressable>
                         </View>
-                        <View style={styles.info}>
-                            <Text style={styles.title}>Name</Text>
-
-                            {namePending?<ActivityIndicator/>:<TextInput style={styles.input} placeholder='NAME' value={name} onChangeText={setName} autoCorrect={false}
-                            autoCapitalize='none' />}
-
-                            {nameError&&<Text style={styles.error}>{nameError}</Text>}
-
-                            <Text style={styles.title}>Email</Text>
-
-                            {emailPending?<ActivityIndicator/>:<TextInput style={styles.input} placeholder='Email' value={email} onChangeText={setEmail} autoCorrect={false}
-                            autoCapitalize='none' />}
-
-                            {emailError&&<Text style={styles.error}>{emailError}</Text>}
-
-                            <Text style={styles.title}>CURRENT PASSWORD</Text>
-
-                            {passwordPending?<ActivityIndicator/>:<TextInput style={styles.input} placeholder='PASSWORD' secureTextEntry value={currentPassword} onChangeText={setCurrentPassword} autoCorrect={false}
-                            autoCapitalize='none'/>}
-
-                            <Text style={styles.title}>NEW PASSWORD</Text>
-
-                            {passwordPending?<ActivityIndicator/>:<TextInput style={styles.input} placeholder='PASSWORD' secureTextEntry value={newPassword} onChangeText={setNewPassword} autoCorrect={false}
-                            autoCapitalize='none'/>}
-
-                            {passwordError&&<Text style={styles.error}>{passwordError}</Text>}
-
                         </View>
+                    </Modal>
+                    <SafeAreaView>
                         <View>
-                            
-                            <Pressable style={styles.button} onPress={() => {handleUpdate()}}>
-                                <Text disabled={avatarPending||namePending||emailPending||passwordPending} style={styles.buttonText}>UPDATE</Text>
+                            <View style={styles.avatar}>
+                                <Pressable style={{borderWidth: 0.5, borderColor: 'crimson'}} onPress={ ()=>{setModalVisible(true)}}>
+                                    {isLoading||avatarPending?<ActivityIndicator/>:<Image style={{width:150, height:150}} source={{uri:srcAvatar}} />}
+                                </Pressable>
+                                {avatarError&&<Text style={styles.error}>{avatarError}</Text>}
+                            </View>
+                            <View style={styles.info}>
+                                <Text style={styles.title}>Name</Text>
+
+                                {namePending?<ActivityIndicator/>:<TextInput style={styles.input} placeholder='NAME' value={name} onChangeText={setName} autoCorrect={false}
+                                autoCapitalize='none' />}
+
+                                {nameError&&<Text style={styles.error}>{nameError}</Text>}
+
+                                <Text style={styles.title}>Email</Text>
+
+                                {emailPending?<ActivityIndicator/>:<TextInput style={styles.input} placeholder='Email' value={email} onChangeText={setEmail} autoCorrect={false}
+                                autoCapitalize='none' />}
+
+                                {emailError&&<Text style={styles.error}>{emailError}</Text>}
+
+                                <Text style={styles.title}>CURRENT PASSWORD</Text>
+
+                                {passwordPending?<ActivityIndicator/>:<TextInput style={styles.input} placeholder='PASSWORD' secureTextEntry value={currentPassword} onChangeText={setCurrentPassword} autoCorrect={false}
+                                autoCapitalize='none'/>}
+
+                                <Text style={styles.title}>NEW PASSWORD</Text>
+
+                                {passwordPending?<ActivityIndicator/>:<TextInput style={styles.input} placeholder='PASSWORD' secureTextEntry value={newPassword} onChangeText={setNewPassword} autoCorrect={false}
+                                autoCapitalize='none'/>}
+
+                                {passwordError&&<Text style={styles.error}>{passwordError}</Text>}
+
+                            </View>
+                            <View>
+                                
+                                <Pressable style={styles.button} onPress={() => {handleUpdate()}}>
+                                    <Text disabled={avatarPending||namePending||emailPending||passwordPending} style={styles.buttonText}>UPDATE</Text>
+                                </Pressable>
+                                <Pressable style={styles.deleteButton} onPress={() => {setModalDeleteVisible(true)}}>
+                                    <Text style={styles.buttonText}>DELETE USER</Text>
+                                </Pressable>
+                            </View>
+                        </View>
+                    </SafeAreaView>
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={modalDeleteVisible}
+                        onRequestClose={() => {
+                        setModalVisible(!modalDeleteVisible);
+                        }}>
+                        <View style={stylesModal.centeredView}>
+                        <View style={stylesModal.modalView}>
+
+                            <TextInput style={stylesModal.input} placeholder='CURRENT PASSWORD' secureTextEntry value={currentPassword} onChangeText={setCurrentPassword} autoCorrect={false}
+                            autoCapitalize='none'/>
+                            {deleteError&&<Text style={styles.error}>{deleteError}</Text>}
+                            <Pressable disabled={deletePending}
+                            style={[stylesModal.button, stylesModal.buttonClose]}
+                            onPress={() =>{deleteUser(currentPassword)}}>
+                            <Text style={stylesModal.textStyle}>DELETE USER</Text>
                             </Pressable>
-                            <Pressable style={styles.deleteButton} onPress={() => {setModalDeleteVisible(true)}}>
-                                <Text style={styles.buttonText}>DELETE USER</Text>
+                            <Pressable
+                            style={[stylesModal.button, stylesModal.buttonSelect]}
+                            onPress={() => setModalDeleteVisible(!modalDeleteVisible)}>
+                            <Text style={stylesModal.textStyle }>RETURN TO MANAGE SCREEN</Text>
                             </Pressable>
                         </View>
-                    </View>
-                </SafeAreaView>
-                <Modal
-                    animationType="slide"
-                    transparent={true}
-                    visible={modalDeleteVisible}
-                    onRequestClose={() => {
-                    setModalVisible(!modalDeleteVisible);
-                    }}>
-                    <View style={stylesModal.centeredView}>
-                    <View style={stylesModal.modalView}>
-
-                        <TextInput style={stylesModal.input} placeholder='CURRENT PASSWORD' secureTextEntry value={currentPassword} onChangeText={setCurrentPassword} autoCorrect={false}
-                        autoCapitalize='none'/>
-                        {deleteError&&<Text style={styles.error}>{deleteError}</Text>}
-                        <Pressable disabled={deletePending}
-                        style={[stylesModal.button, stylesModal.buttonClose]}
-                        onPress={() =>{deleteUser(currentPassword)}}>
-                        <Text style={stylesModal.textStyle}>DELETE USER</Text>
-                        </Pressable>
-                        <Pressable
-                        style={[stylesModal.button, stylesModal.buttonSelect]}
-                        onPress={() => setModalDeleteVisible(!modalDeleteVisible)}>
-                        <Text style={stylesModal.textStyle }>RETURN TO MANAGE SCREEN</Text>
-                        </Pressable>
-                    </View>
-                    </View>
-                </Modal>
-            </ScrollView>
+                        </View>
+                    </Modal>
+                </ScrollView>
+            </View>
         </TouchableWithoutFeedback>
     )
 }
@@ -230,7 +232,7 @@ const styles = StyleSheet.create({
     avatar: {
       marginTop: 20,
       alignItems: 'center',
-      justifyContent:'center'
+      justifyContent:'center',
     },
     info: {
         marginTop: 0,
@@ -239,7 +241,7 @@ const styles = StyleSheet.create({
         
         height : 50,
         paddingHorizontal : 20,
-        borderColor : "#1e90ff",
+        borderColor : "red",
         borderWidth : 1,
         borderRadius: 7
     },
@@ -249,12 +251,12 @@ const styles = StyleSheet.create({
         textTransform : "uppercase",
         textAlign: "left",
         paddingVertical : 15,
-        color : "#1e90ff",
+        color : "red",
         marginLeft: 15,
     },
     button : {
         marginTop: 20,
-        backgroundColor : "#1e90ff",
+        backgroundColor : "red",
         height : 45,
         borderColor : "gray",
         borderWidth  : 1,
@@ -265,7 +267,7 @@ const styles = StyleSheet.create({
     },
     deleteButton : {
         marginTop: 20,
-        backgroundColor : "red",
+        backgroundColor : "#710c04",
         height : 45,
         borderColor : "gray",
         borderWidth  : 1,
