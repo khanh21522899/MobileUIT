@@ -44,7 +44,7 @@ const screenOptions = {
         right: 0,
         left: 0,
         elevation: 0,
-        height: 70
+        height: 70,
     }
 }
 
@@ -61,7 +61,7 @@ const BottomTabNavigation = () => {
                         <Ionicons
                             name={focused ? 'home' : 'home-outline'}
                             size={24}
-                            color={focused ? '#007bff' : '#808080'}
+                            color={focused ? 'red' : '#808080'}
                         />
                     )
                 }}
@@ -74,7 +74,7 @@ const BottomTabNavigation = () => {
                         <Ionicons
                             name={'search-sharp'}
                             size={24}
-                            color={focused ? '#007bff' : '#808080'}
+                            color={focused ? 'red' : '#808080'}
                         />
                     )
                 }}
@@ -87,7 +87,7 @@ const BottomTabNavigation = () => {
                         <Ionicons
                             name={focused ? 'save' : 'save-outline'}
                             size={24}
-                            color={focused ? '#007bff' : '#808080'}
+                            color={focused ? 'red' : '#808080'}
                         />
                     )
                 }}
@@ -100,7 +100,7 @@ const BottomTabNavigation = () => {
                         <Ionicons
                             name={focused ? 'person' : 'person-outline'}
                             size={24}
-                            color={focused ? '#007bff' : '#808080'}
+                            color={focused ? 'red' : '#808080'}
                         />
                     )
                 }}

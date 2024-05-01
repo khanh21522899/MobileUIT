@@ -153,7 +153,9 @@ export default function LoginForm({navigation}) {
   }
   else{
     return (
-      <ActivityIndicator/>
+      <View style={{justifyContent:'center', alignItems: 'center'}}>
+        <ActivityIndicator/>
+      </View>
     )
   }
 }
@@ -162,7 +164,7 @@ export default function LoginForm({navigation}) {
 const styles = StyleSheet.create({
   container : {
     alignItems : "center",
-    paddingTop: 20,
+    paddingTop: 30,
   },
   image : {
     height : 150,
@@ -205,10 +207,10 @@ const styles = StyleSheet.create({
     
   },
   rememberText : {
-    fontSize: 13
+    fontSize: 15
   },
   forgetText : {
-    fontSize : 11,
+    fontSize : 15,
     color : "red"
   },
   button : {
@@ -234,7 +236,7 @@ const styles = StyleSheet.create({
     textAlign : "center",
     paddingVertical : 10,
     color : "gray",
-    fontSize : 13,
+    fontSize : 15,
     marginBottom : 6
   },
   mediaIcons : {
@@ -251,9 +253,10 @@ const styles = StyleSheet.create({
   footerText : {
     textAlign: "center",
     color : "gray",
+    fontSize: 15
   },
   signup : {
     color : "red",
-    fontSize : 13
+    fontSize : 15
   }
 })

@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, FontAwesome5, FontAwesome6 } from '@expo/vector-icons';
 import { useLogout } from '../../../hooks/useLogout';
 
 const Account = () => {
@@ -26,8 +26,11 @@ const Account = () => {
           }
         }}>
         <View style={styles.itemContainer}>
+          {item.title==="User Info"&&<FontAwesome5 name="user-cog" size={24} color="crimson" />}
+          {item.title==="Reservation History"&&<FontAwesome5 name="history" size={24} color="crimson" />}
+          {item.title==="Logout"&&<FontAwesome5 name="sign-out-alt" size={24} color="crimson" />}
           <Text style={styles.textStyle}>{item.title}</Text>
-          <Ionicons name="chevron-forward-outline" size={24} color="black" />
+          <Ionicons name="chevron-forward-outline" size={24} color="crimson" />
         </View>
       </TouchableOpacity>
     );
@@ -51,22 +54,23 @@ export default Account;
 
 const styles = StyleSheet.create({
   contentContainer: {
-    paddingHorizontal: 10
+    paddingHorizontal: 15,
   },
   itemContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingVertical: 15
+    paddingVertical: 30
   },
   separator: {
     height: 1,
     backgroundColor: '#CCCCCC'
   },
   textStyle: {
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: 'bold',
-    color: 'black',
-    flex: 1
+    color: 'crimson',
+    flex: 1,
+    marginLeft: 15
   }
 });
