@@ -14,8 +14,8 @@ router.post('/login', loginUser)
 router.post('/signup', signupUser)
 
 
-//Blog Author Information
-router.get('/userinfo/:id', getInfo)
+// //Blog Author Information
+// router.get('/userinfo/:id', getInfo)
 
 
 //Dashboard Route

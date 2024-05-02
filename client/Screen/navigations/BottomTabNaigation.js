@@ -10,6 +10,7 @@ import Reservation from '../auth/Reservation'
 import Detail from '../auth/Detail'
 import ReservDetail from '../auth/ReservDetail'
 import { Ionicons } from '@expo/vector-icons'
+import LogoTitle from '../components/headerLogo'
 
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator()
@@ -57,6 +58,14 @@ const BottomTabNavigation = () => {
                 name="HomeStack"
                 component={HomeStack}
                 options={{
+                    headerStyle:{
+                        backgroundColor: '#f4511e',
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                    },
+                    headerTitle: () => <LogoTitle probs={'Home'}/>,
                     tabBarIcon: ({ focused }) => (
                         <Ionicons
                             name={focused ? 'home' : 'home-outline'}
@@ -70,6 +79,14 @@ const BottomTabNavigation = () => {
                 name="Search"
                 component={Search}
                 options={{
+                    headerStyle:{
+                        backgroundColor: '#f4511e',
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                    },
+                    headerTitle: () => <LogoTitle probs={'Search'}/>,
                     tabBarIcon: ({ focused }) => (
                         <Ionicons
                             name={'search-sharp'}
@@ -83,6 +100,14 @@ const BottomTabNavigation = () => {
                 name='Home'
                 component={Home}
                 options={{
+                    headerStyle:{
+                        backgroundColor: '#f4511e',
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                    },
+                    headerTitle: () => <LogoTitle probs={'Contact'}/>,
                     tabBarIcon: ({ focused }) => (
                         <Ionicons
                             name={focused ? 'save' : 'save-outline'}
@@ -96,6 +121,14 @@ const BottomTabNavigation = () => {
                 name='Profile'
                 component={AccountStack}
                 options={{
+                    headerStyle:{
+                        backgroundColor: '#f4511e',
+                    },
+                    headerTintColor: '#fff',
+                    headerTitleStyle: {
+                        fontWeight: 'bold',
+                    },
+                    headerTitle: () => <LogoTitle probs={'Profile'}/>,
                     tabBarIcon: ({ focused }) => (
                         <Ionicons
                             name={focused ? 'person' : 'person-outline'}

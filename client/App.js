@@ -22,7 +22,7 @@ export default function App() {
   return (
     <AuthContext.Provider value ={{user, setUser}}>
       <NavigationContainer>
-        <MainStack.Navigator screenOptions={{
+        <MainStack.Navigator  screenOptions={{
           headerLeft:()=>null,
           headerShown:false
         }}>

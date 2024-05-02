@@ -11,7 +11,7 @@ const Promotion = () =>{
     return (
         <PromotionStack.Navigator screenOptions={{
         }} initialRouteName='Main'>
-            <PromotionStack.Screen options={{headerLeft:()=>null}} name='Main' component={MainPage}/>
+            <PromotionStack.Screen options={{headerShown:false, headerLeft:()=>null}} name='Main' component={MainPage}/>
             <PromotionStack.Screen name='AccountManage' component={AccountManage}/>
         </PromotionStack.Navigator>
     )
