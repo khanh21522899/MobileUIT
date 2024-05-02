@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
+import { Ionicons } from '@expo/vector-icons';
 
 const Footer = () => {
   const [name, setName] = useState('');
@@ -21,10 +22,12 @@ const Footer = () => {
     <View style={styles.footerContainer}>
       {/* Basic Information */}
       <View style={styles.infoContainer}>
-        <Text style={styles.infoText}>Company Name</Text>
-        <Text style={styles.infoText}>Address: 123 Street, City, Country</Text>
+        <Text style={styles.nameComStyle}>Booking Restaurant</Text>
+        <Ionicons style={styles.iconLogo} name="restaurant" size={100} color="#28bab6" />
+
+        <Text style={styles.infoText}>Address: 123 Hai Ba Trung, Ho Chi Minh City, Viet Nam</Text>
         <Text style={styles.infoText}>Phone: +1234567890</Text>
-        <Text style={styles.infoText}>Email: example@example.com</Text>
+        <Text style={styles.infoText}>Email: bookingres@ìno.com</Text>
       </View>
       {/* Contact Form */}
       <View style={styles.formContainer}>
@@ -61,16 +64,16 @@ export default Footer
 const styles = StyleSheet.create({
   footerContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
     paddingHorizontal: 20,
     paddingVertical: 20,
     backgroundColor: '#f9f9f9',
     marginBottom: 68
-},
+  },
   infoContainer: {
     flex: 1,
     marginRight: 10,
+    // Align content vertically to the top
+    alignItems: 'flex-start',
   },
   infoText: {
     marginBottom: 10,
@@ -87,7 +90,7 @@ const styles = StyleSheet.create({
   },
   messageInput: {
     height: 100,
-    textAlignVertical: 'top', // Align text to top in multiline input
+    textAlignVertical: 'top',
   },
   button: {
     backgroundColor: '#007bff',
@@ -98,5 +101,15 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontWeight: 'bold',
+  },
+  // Additional style for the company name
+  nameComStyle: {
+    fontSize: 16, // Adjust font size as needed
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  iconLogo: {
+    marginBottom: 28,
+    marginLeft: 30
   },
 });

@@ -1,8 +1,9 @@
-import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, FlatList } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { useRoute } from '@react-navigation/native';
 import { getRestaurantById } from '../../serverConnect/index'
 import { useNavigation } from '@react-navigation/native'
+import { Ionicons } from '@expo/vector-icons';
 
 
 const Detail = () => {
@@ -12,7 +13,7 @@ const Detail = () => {
   console.log('idofResatDetatail:', id)
 
   const [restaurant, setRestaurant] = useState(null); // Initialize with null
- const getData = async () => {
+  const getData = async () => {
     try {
       const result = await getRestaurantById(id)
       setRestaurant(result?.data?.restaurant);
@@ -28,26 +29,56 @@ const Detail = () => {
   }, [id]);
 
   return (
-    <View style={styles.container}>
+    // <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
         {restaurant ? (
           <>
             <Image source={{ uri: restaurant.images[0] }} style={styles.image} />
             <Text style={styles.title}>{restaurant.name}</Text>
-            <Text style={styles.info}>Address: {restaurant.address}</Text>
-            <Text style={styles.info}>Phone: {restaurant.phone}</Text>
+            <View style={styles.infoRow}>
+              <Ionicons name="location" size={24} color="#3f4f4c" />
+              <Text style={styles.info}>{restaurant.address}</Text>
+            </View>
+
+            <View style={styles.infoRow}>
+              <Ionicons name="call" size={24} color="#3f4f4c" />
+              <Text style={styles.info}>{restaurant.phone}</Text>
+            </View>
+            <View style={styles.infoRow}>
+              <Ionicons name="time" size={24} color="#3f4f4c" />
+              <Text style={styles.info}>{restaurant.active ? "Openning" : "Openning"}</Text>
+            </View>
+            <TouchableOpacity style={styles.reservationButton} onPress={() => navigation.navigate('Reservation', { id })}>
+              <Text style={styles.buttonText}>Reservation</Text>
+            </TouchableOpacity>
+
+
+            <Text style={styles.title}>Gallery</Text>
+            <FlatList
+              
+              contentContainerStyle={{marginBottom: 80}} // Add this line 
+              scrollEnabled={false}
+              data={restaurant.images}
+              horizontal={false}
+              numColumns={3}
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={({ item }) => (
+                <Image source={{ uri: item }} style={styles.galleryImage} />
+              )}
+            />
+            
+            
+          
           </>
         ) : (
           <Text>Loading...</Text>
         )}
 
-        <TouchableOpacity style={styles.reservationButton} onPress={() => navigation.navigate('Reservation', {id} )}>
-          <Text style={styles.buttonText}>Reservation</Text>
-        </TouchableOpacity>
+
 
       </ScrollView>
 
-    </View>
+    // </View>
   );
 };
 
@@ -66,33 +97,54 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   image: {
-    width: 200,
-    height: 200,
-    borderRadius: 10,
+    width: "100%",
+    height: 250,
     marginBottom: 10,
-    marginTop: 20,
     alignItems: 'center',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
-    alignItems: 'center',
-    textAlign: 'center',
+    marginLeft: 10,
+    alignSelf: 'fle',
 
   },
   info: {
     fontSize: 16,
-    margin: 10,
-    textAlign: 'center',
-    alignItems: 'center',
+    marginBottom: 10,
+    marginLeft: 10,
+    alignSelf: 'flex-start',
   },
   reservationButton: {
-    backgroundColor: 'orange',
+    backgroundColor: 'red',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
-    marginTop: 20,
+    marginTop: 10,
+    marginBottom: 20,
     alignSelf: 'center',
-}
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 18,
+  },
+  infoRow: {
+    flexDirection: 'row',
+    alignSelf: 'flex-start', // Align items vertically
+    marginBottom: 10, // Add margin if needed
+    marginLeft: 20,
+
+  },
+  icon: {
+    marginRight: 5, // Add some space between the icon and text
+  },
+  galleryImage: {
+    width: 100,
+    height: 100,
+    borderRadius: 10,
+    marginHorizontal: 5,
+    marginBottom: 10,
+  },
+  
 });
