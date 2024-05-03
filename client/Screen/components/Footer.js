@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native'
 import React, { useState } from 'react'
 import { Ionicons } from '@expo/vector-icons';
 
@@ -23,8 +23,13 @@ const Footer = () => {
       {/* Basic Information */}
       <View style={styles.infoContainer}>
         <Text style={styles.nameComStyle}>Booking Restaurant</Text>
-        <Ionicons style={styles.iconLogo} name="restaurant" size={100} color="#28bab6" />
-
+        {/* <Ionicons style={styles.iconLogo} name="restaurant" size={100} color="#28bab6" /> */}
+        <View style={{ flexDirection: 'row' }}>
+          <Image
+            style={{ width: 120, height: 120, position: 'relative', marginLeft: 18 }}
+            source={require('../../assets/pngtree-chef-restaurant-logo-png.png')}
+          />
+        </View>
         <Text style={styles.infoText}>Address: 123 Hai Ba Trung, Ho Chi Minh City, Viet Nam</Text>
         <Text style={styles.infoText}>Phone: +1234567890</Text>
         <Text style={styles.infoText}>Email: bookingres@ìno.com</Text>

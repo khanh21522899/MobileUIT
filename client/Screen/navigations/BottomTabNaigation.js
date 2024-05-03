@@ -1,6 +1,8 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import Footer from '../components/Footer'
+import Contact from '../components/Contact'
 import Home from '../auth/Home'
 import Search from '../auth/Search'
 import Account from '../auth/profile/Account'
@@ -97,8 +99,8 @@ const BottomTabNavigation = () => {
                 }}
             />
              <Tab.Screen
-                name='Home'
-                component={Home}
+                name='Contact'
+                component={Contact}
                 options={{
                     headerStyle:{
                         backgroundColor: '#f4511e',
@@ -110,7 +112,7 @@ const BottomTabNavigation = () => {
                     headerTitle: () => <LogoTitle probs={'Contact'}/>,
                     tabBarIcon: ({ focused }) => (
                         <Ionicons
-                            name={focused ? 'save' : 'save-outline'}
+                            name={focused ? 'mail' : 'mail-outline'}
                             size={24}
                             color={focused ? 'red' : '#808080'}
                         />
