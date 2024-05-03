@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Alert, StyleSheet, Keyboard, TouchableOpacity, Text  } from 'react-native';
+import { View, TextInput, Alert, StyleSheet, Keyboard, TouchableOpacity, Text, TouchableWithoutFeedback  } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import * as Location from 'expo-location';
 
@@ -15,11 +15,21 @@ const Search = () => {
       if (status !== 'granted') {
         throw new Error('Location permission denied');
       }
-
+  
       let location = await Location.getCurrentPositionAsync({});
+      if (!location) {
+        throw new Error('Location not available');
+      }
+  
       setLocation(location);
     } catch (error) {
-      Alert.alert('Error', 'Failed to get current location');
+      let errorMessage = 'Failed to get current location';
+      if (error.message === 'Location permission denied') {
+        errorMessage = 'Location permission denied. Please enable location services in your device settings and try again.';
+      } else if (error.message === 'Location not available') {
+        errorMessage = 'Location not available. Please make sure location services are enabled and try again.';
+      }
+      Alert.alert('Error', errorMessage);
     }
   };
 
@@ -52,6 +62,7 @@ const Search = () => {
   };
 
   return (
+    <TouchableWithoutFeedback  onPress={()=>{Keyboard.dismiss()}}>    
     <View style={styles.container}>
       <View style={styles.searchContainer}>
         <TouchableOpacity  style={styles.buttonContainer}  onPress={getCurrentLocation}>
@@ -103,6 +114,7 @@ const Search = () => {
         ))}
       </MapView>
     </View>
+    </TouchableWithoutFeedback>
   )
 }
 

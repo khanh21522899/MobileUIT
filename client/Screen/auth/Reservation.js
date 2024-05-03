@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Modal, ScrollView, TouchableWithoutFeedback } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Modal, ScrollView, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { createReservation, getRestaurantById } from '../../serverConnect/index';
 import { useRoute } from '@react-navigation/native';
@@ -121,6 +121,7 @@ const Reservation = () => {
 
 
   return (
+    <TouchableWithoutFeedback  onPress={()=>{Keyboard.dismiss()}}>    
     <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Reservation Info</Text>
       <View style={styles.inputContainer}>
@@ -221,6 +222,7 @@ const Reservation = () => {
         </View>
       </Modal>
       </ScrollView>
+      </TouchableWithoutFeedback>
   );
 };
 
