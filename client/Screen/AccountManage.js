@@ -321,7 +321,7 @@ const styles = StyleSheet.create({
       elevation: 2,
     },
     buttonSelect: {
-      backgroundColor: '#0390fc',
+      backgroundColor: '#f4511e',
     },
     buttonClose: {
       backgroundColor: 'red',
@@ -330,6 +330,7 @@ const styles = StyleSheet.create({
       color: 'white',
       fontWeight: 'bold',
       textAlign: 'center',
+      width:200
     },
   
     modalText: {

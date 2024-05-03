@@ -14,7 +14,7 @@ const Home = () => {
       <Carousel />
       <Title />
       <Restaurant />
-      <Footer />
+      {/* <Footer /> */}
     </ScrollView> 
     </View>
   )

@@ -23,7 +23,7 @@ const HomeStack = () => {
             <Stack.Screen options={{ headerShown: false }} name="Home" component={Home} />
             <Stack.Screen name="Reservation" component={Reservation} />
             <Stack.Screen name="Detail" component={Detail} />
-            <Stack.Screen name="ReservDetail" component={ReservDetail} />
+            <Stack.Screen options={{title:'Reservation Detail'}}name="ReservDetail" component={ReservDetail} />
         </Stack.Navigator>
     )
 }
@@ -32,8 +32,12 @@ const AccountStack = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen options={{ headerShown: false }} name="Account" component={Account} />
-            <Stack.Screen name="UserInfo" component={AccountManage} />
-            <Stack.Screen name="ReservationHistory" component={ReservationHistory} />
+            <Stack.Screen options={{
+                title:'User Information',
+            }} name="UserInfo" component={AccountManage} />
+            <Stack.Screen options={{
+                title:'Reservation History'
+            }} name="ReservationHistory" component={ReservationHistory} />
         </Stack.Navigator>
     )
 }
