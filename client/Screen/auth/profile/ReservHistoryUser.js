@@ -1,4 +1,4 @@
-import { StyleSheet, FlatList, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, FlatList, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { getReservations, deleteReservation } from '../../../serverConnect/index';
 
@@ -31,27 +31,30 @@ const ReservHistoryUser = () => {
   }, []);
 
   return (
-    <View>
-      <Text>ReservHistory</Text>
-      <FlatList
+    <View >
+   
+      <FlatList 
         data={reservations}
         renderItem={({ item }) => (
-          <View>
-            <Image
-              source={{ uri: item.restaurant.images[0] }}
-              style={{ width: 100, height: 100 }}
-            />
-            <Text>{item.restaurant.name}</Text>
-            <Text>{item.restaurant.address}</Text>
-            <Text>{item._id}</Text>
-            <Text>{item.phone}</Text>
-            <Text>{item.quantity}</Text>
-            <Text>{item.status}</Text>
-            {/* TouchableOpacity for cancelling reservation */}
-            <TouchableOpacity style={styles.cancelButton} onPress={() => handleCancelReservation(item._id)}>
-              <Text style={styles.cancelButtonText}>Cancel Reservation</Text>
-            </TouchableOpacity>
-          </View>
+          
+            <View  style={{marginTop:20, marginBottom:55}}>
+              <Image 
+                source={{ uri: item.restaurant.images[0] }}
+                style={{ width: 150, height: 150, alignSelf:'center' }}
+              />
+              <Text style={styles.text}>Restautrant : {item.restaurant.name}</Text>
+              <Text style={styles.text}>Address : {item.restaurant.address}</Text>
+              <Text style={styles.text}>Booking ID : {item._id}</Text>
+              <Text style={styles.text}>Phone number : {item.phone}</Text>
+              <Text style={styles.text}>People ammount : {item.quantity}</Text>
+              <Text style={styles.text}>Booking status : {item.status}</Text>
+              {/* TouchableOpacity for cancelling reservation */}
+              <TouchableOpacity style={styles.cancelButton} onPress={() => handleCancelReservation(item._id)}>
+                <Text style={styles.cancelButtonText}>Cancel Reservation</Text>
+              </TouchableOpacity>
+              <Text style={{fontSize:20, alignSelf:'center'}}>---------------------------------------------------</Text>
+            </View>
+    
         )}
         keyExtractor={(item, index) => item._id.toString() || index.toString()}
         showsVerticalScrollIndicator={false}
@@ -72,6 +75,10 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
   },
+  text:{
+    fontSize:15,
+    marginTop:10,
+  }
 });
 
 export default ReservHistoryUser;

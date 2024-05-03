@@ -51,7 +51,7 @@ const ReservDetail = () => {
 
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>Reservation Detail</Text>
+                {/* <Text style={styles.title}>Reservation Detail</Text> */}
                 {reservation.restaurant.images.length > 0 && (
                     <Image source={{ uri: reservation.restaurant.images[0] }} style={styles.image} />
                 )}
