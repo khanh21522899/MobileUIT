@@ -52,16 +52,16 @@ const ReservDetail = () => {
         return (
             <View style={styles.container}>
                 <Text style={styles.title}>Reservation Detail</Text>
-                <Text>ID: {reservation._id}</Text>
+                {reservation.restaurant.images.length > 0 && (
+                    <Image source={{ uri: reservation.restaurant.images[0] }} style={styles.image} />
+                )}
                 <Text>Phone: {reservation.phone}</Text>
                 <Text>Arrival Time: {reservation.arrivalTime}</Text>
                 <Text>Quantity: {reservation.quantity}</Text>
                 <Text>Status: {reservation.status}</Text>
                 <Text>Restaurant Name: {reservation.restaurant.name}</Text>
                 <Text>Restaurant Address: {reservation.restaurant.address}</Text>
-                {reservation.restaurant.images.length > 0 && (
-                    <Image source={{ uri: reservation.restaurant.images[0] }} style={styles.image} />
-                )}
+                
                 <TouchableOpacity style={styles.cancelButton} onPress={handleCancelReservation}>
                     <Text style={styles.cancelButtonText}>Cancel Reservation</Text>
                 </TouchableOpacity>
@@ -88,8 +88,8 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     image: {
-        width: 100,
-        height: 100,
+        width: "100%",
+        height: 200,
         margin: 5,
     },
     cancelButton: {
